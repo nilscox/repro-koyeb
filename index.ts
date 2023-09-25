@@ -22,8 +22,6 @@ async function main() {
 
       res.write(rows[0].message);
       res.end();
-
-      await client.end();
     })
     .listen(Number(port), "0.0.0.0", () => {
       console.log(`server started on 0.0.0.0:${port}`);
