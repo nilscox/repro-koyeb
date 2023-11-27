@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+
+    steps:
+      - name: Install Koyeb CLI
+        uses: koyeb-community/install-koyeb-cli@v2
+        with:
+          api_token: ${{ secrets.KOYEB_TOKEN }}
+
+      - name: Deploy
+        uses: koyeb/action-git-deploy@f0dec155624c143d4172fad7da60fab7a94c9ec9
+        with:
+          app-name: my-app-2
+          service-name: my-service
+          git-branch: master
+          service-ports: 3000:http
+          service-routes: /:3000
